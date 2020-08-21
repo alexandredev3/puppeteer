@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puppeteer</title>
+
+  <style>
+    body {
+      background: #7159c1;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container li img {
+      max-width: 500px;
+      width: 100%;
+      height: 100%;
+
+      border-radius: 12px;
+    }
+  </style>
+
+</head>
+<body>
+
+    <div class="container">
+
+    </div>
+
+    <script>
+
+      (async() => {
+        // Abrir o arquivo de dados (JSON);
+        const response = await fetch('./temp/instagram.json')
+        const data = await response.json()
+
+        // Formatar os dados para enviar para o HTML;
+        const htmlList = data.map(({ src }) => {
+          return `<li> <img src="${src}"/> </li>`
+        });
+
+        console.log(htmlList)
+        // Colocar no HTML;
+        document.querySelector('.container').innerHTML = htmlList;
+
+      })();
+
+    </script>
+
+</body>
+</html>
